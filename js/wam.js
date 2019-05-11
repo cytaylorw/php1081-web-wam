@@ -10,7 +10,7 @@
         const modes = [
             ["easy",label.mode_easy,10,3,5],
             ["normal",label.mode_normal,10,2,2,"selected"],
-            ["hard",label.mode_hard,10,1,0.3],
+            ["hard",label.mode_hard,5,1,0.2],
             ["custom",label.mode_custom]
         ]
 
@@ -74,12 +74,16 @@
             time = inputs[0].value;
             timeLeft.innerText = time;
             scoreText.innerText = score;
-            console.log("interval"+inputs[2].value);
             timer = setInterval(putMole,1000*inputs[2].value);
-            putMole();
-            gameTimer = setInterval(countDown,1000);
+            for(let i=0;i<tds.length;i++){
+                tds[i].classList.remove("bee");
+                tds[i].classList.remove("yeah");
+            }
             document.body.classList.remove("result");
             document.body.classList.add("noResult");
+            putMole();
+            gameTimer = setInterval(countDown,1000);
+            
         }
 
         for(let i=0;i<tds.length;i++){
@@ -124,6 +128,15 @@
                 for(let i=0;i<tds.length;i++){
                     tds[i].classList.remove("red");
                     tds[i].classList.remove("blue");
+                    if(score==0){
+                        tds[i].classList.add("bee");
+                        superman.classList.remove("b2t");
+                        superman.classList.add("t2b");
+                    }else{
+                        tds[i].classList.add("yeah");
+                        superman.classList.remove("t2b");
+                        superman.classList.add("b2t");
+                    }
                 }
                 
             }

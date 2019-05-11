@@ -24,6 +24,17 @@ html, body{
     background-image: url("./images/blur-bright-close-up-1606655.jpg");
 }
 
+.yeah{
+    background-image: url("./images/yeah.gif");
+    background-position: center;
+    background-size: 100px 100px;
+}
+
+.bee{
+    background-image: url("./images/bee.gif");
+    background-position: center;
+}
+
 .wrap{
     width: 100%;
     display: flex;
@@ -42,6 +53,9 @@ td{
     height: 100px;
     border-radius: 50%;
     margin: 20px;
+    background-image: url("./images/ahh.gif");
+    background-position: center;
+
 }
 .red{
     background-color: rgba(255, 0, 0,0.8);
@@ -146,7 +160,11 @@ option {
     left: calc(100vw / 3);
     z-index: 1;
     top: 100vh;
+}
+
+.b2t{
     animation: b2t var(--run-time) linear infinite;
+    top: 100vh;
 }
 
 @keyframes b2t{
@@ -158,6 +176,24 @@ option {
     }
     100%{
         top: calc(0vh - 96px);
+    }
+}
+
+.t2b{
+    animation: t2b var(--run-time) linear infinite;
+    transform: rotate(180deg);
+    top: calc(0vh - 96px);
+}
+
+@keyframes t2b{
+    0%{
+        top: calc(0vh - 96px);
+    }
+    66%{
+        top: 100vh;
+    }
+    100%{
+        top: 100vh;
     }
 }
 
