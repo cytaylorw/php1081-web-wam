@@ -4,173 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>拯救小小兵</title>
-    <style>
-        :root{
-            --run-time: 4s;
-        }
-        *{
-            font-family: Arial, Helvetica, sans-serif, "微軟正黑體";
-            font-size: 18px;
-            color: white;
-            text-shadow: 0px 0px 1px 1px black;
-        }
-
-        html, body{
-            width: 100%;
-            height: 100%;
-            margin: 0;
-            background-size: cover;
-        }
-
-        .noResult{
-            background-image: url("./images/minion-2874955_1920.jpg");
-        }
-
-        .result{
-            background-image: url("./images/blur-bright-close-up-1606655.jpg");
-        }
-
-        .wrap{
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            margin: auto;
-            padding-top: 20px;
-        }
-        .labels{
-            padding: 10px;
-        }
-        td{
-            border: 1px solid white;
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            margin: 20px;
-        }
-        .red{
-            background-color: rgba(255, 0, 0,0.8);
-            background-image: url("./images/Minion-Evil-4-icon.png");
-            background-repeat: no-repeat;
-            background-position: 0px 0px;
-            cursor: url("./images/gun-1.png"), auto;
-            border: none;
-            animation: escape 1.5s linear infinite;
-        }
-        @keyframes escape{
-            0%{
-                background-position: 0px 0px;
-            }
-            100%{
-                background-position: 96px 0px;
-            }
-        }
-
-        .red:link, .red:visited, .red:hover{
-            cursor: url("./images/gun-1.png"), auto;
-        }
-
-        .red:active{
-            cursor: url("./images/gun-2.png"), auto;
-        }
-        .blue{
-            background-image: url("./images/Minion-Dancing-icon.png");
-            background-color: rgba(0, 0, 255,0.8);
-            border: none;
-        }
-        input{
-            background-color: transparent;
-        }
-        .r2l {
-            position: fixed;
-            left: calc(100vw + 0px);
-            z-index: -1;
-        }
-
-        #evil1{
-            top: 100px;
-            animation: r2l var(--run-time) linear infinite;
-        }
-
-        #evil3{
-            top: 250px;
-            animation: r2l var(--run-time) calc(var(--run-time) / 2) linear infinite;
-        }
-
-        @keyframes r2l{
-            0%{
-                left: calc(100vw + 0px);
-            }
-            50%{
-                left: calc(0vw - 96px);
-            }
-            100%{
-                left: calc(0vw - 96px);
-            }
-        }
-
-        .l2r {
-            position: fixed;
-            left: calc(0vw - 96px);
-            z-index: -1;
-        }
-
-        #evil2{
-            top: 100px;
-            animation: l2r var(--run-time) linear infinite;
-        }
-
-        #evil4{
-            top: 250px;
-            animation: l2r var(--run-time) calc(var(--run-time) / 2) linear infinite;
-        }
-
-        @keyframes l2r{
-            0%{
-                left: calc(0vw - 96px);
-            }
-            50%{
-                left: calc(100vw + 0px);
-            }
-            100%{
-                left: calc(100vw + 0px);
-            }
-        }
-
-        .result .r2l, .result .l2r{
-            display: none;
-        }
-
-        #superman {
-            position: fixed;
-            left: calc(100vw / 3);
-            z-index: 1;
-            top: 100vh;
-            animation: b2t var(--run-time) linear infinite;
-        }
-
-        @keyframes b2t{
-            0%{
-                top: 100vh;
-            }
-            66%{
-                top: calc(0vh - 96px);
-            }
-            100%{
-                top: calc(0vh - 96px);
-            }
-        }
-
-        .noResult #superman {
-            display: none;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <title></title>
 </head>
 <body class="noResult">
         <div class="wrap">
-        <div class="labels">分數：<span id="score">0</span></div>
+        <div id="scoreLabel" class="labels"><span id="score">0</span></div>
         <table>
             <tr>
                 <td></td>
@@ -189,85 +28,14 @@
             </tr>
         </table>
         
-        <div class="labels"><input type="button" value="開始遊戲" id="start"></div>
-        <div class="labels">剩餘時間：<span id="timeLeft">60</span>秒</div>
+        <div class="labels"><input type="button" value="" id="start"></div>
+        <div id="remainLabel" class="labels"><span id="timeLeft"></span></div>
     </div>
     <img src="./images/Minion-Evil-icon.png" class="r2l" id="evil1">
     <img src="./images/Minion-Evil-2-icon.png" class="l2r" id="evil2">
     <img src="./images/Minion-Evil-3-icon.png" class="r2l" id="evil3">
     <img src="./images/Minion-Evil-4-icon.png" class="l2r" id="evil4">
     <img src="./images/Minion-Superman-icon.png" id="superman">
+    <script src="./js/wam.js"></script>
 </body>
-<script>
-    const totalTime = 10;
-    const num = 2;
-    const intervalBySec = 1.5;
-    let start =  document.getElementById("start");
-    let score = 0;
-    let scoreText = document.getElementById("score");
-    let tds = document.getElementsByTagName("td");
-    let timer = 0;
-    let gameTimer = 0;
-    let timeLeft = document.getElementById("timeLeft");
-    let time = totalTime;
-    timeLeft.innerText = totalTime;
-    start.onclick = function(){
-        timeLeft.innerText = time;
-        scoreText.innerText = score;
-        timer = setInterval(putMole,1000*intervalBySec);
-        putMole();
-        start.disabled=true;
-        gameTimer = setInterval(countDown,1000);
-        document.body.classList.remove("result");
-        document.body.classList.add("noResult");
-    }
-
-    function countDown(){
-        time--;
-        timeLeft.innerText = time;
-        if(time == 0){
-            clearInterval(timer);
-            clearInterval(gameTimer);
-            document.body.classList.remove("noResult");
-            document.body.classList.add("result");
-            setTimeout(function(){
-                alert(`時間到，總分${Math.ceil((totalTime/intervalBySec))*num}，你獲得了${score}分`);
-                time = totalTime;
-                score = 0;
-                start.disabled=false;
-            },100)
-            for(let i=0;i<tds.length;i++){
-                tds[i].classList.remove("red");
-                tds[i].classList.remove("blue");
-            }
-            
-        }
-    }
-
-    function putMole(){
-        for(let i=0;i<tds.length;i++){
-            tds[i].classList.remove("red");
-            tds[i].classList.remove("blue");
-        }
-        let rands=[];
-        do{ 
-            let rand = Math.floor(Math.random()*9);
-            if(!rands.includes(rand))rands[rands.length]=rand;
-        }while(rands.length < num)
-
-        for(let i=0;i<rands.length;i++){
-            tds[rands[i]].classList.add("red");
-        }
-    }
-    for(let i=0;i<tds.length;i++){
-            tds[i].onclick = function(){
-                if(this.classList.contains("red")){
-                    this.classList.remove("red");
-                    this.classList.add("blue");
-                    score++;
-                    scoreText.innerText=score; 
-                }
-            }
-        }
-</script>
 </html>
