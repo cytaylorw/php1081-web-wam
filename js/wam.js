@@ -95,7 +95,8 @@
         
         for(let i=0;i<inputs.length;i++){
             inputs[i].oninput = function(){
-                if(inputs[0].value<5 || inputs[1].value<1 || inputs[1].value>5 || inputs[2].value<0.1){
+                if(parseInt(inputs[0].value)<5 || parseInt(inputs[1].value)<1 || parseInt(inputs[1].value)>5 || 
+                    parseFloat(inputs[2].value)<0.1 || parseFloat(inputs[2].value)>parseInt(inputs[0].value)){
                     start.disabled=true;
                 }else{
                     start.disabled=false;
