@@ -9,7 +9,7 @@
 </head>
 <body class="noResult">
         <div class="wrap">
-        <div id="scoreLabel" class="labels"><span id="score">0</span></div>
+        <div id="scoreLabel" class="rows"><span id="score">0</span></div>
         <table>
             <tr>
                 <td></td>
@@ -28,8 +28,22 @@
             </tr>
         </table>
         
-        <div class="labels"><input type="button" value="" id="start"></div>
-        <div id="remainLabel" class="labels"><span id="timeLeft"></span></div>
+        <div class="rows"><input type="button" value="" id="start"></div>
+        <div class="rows inputRow">
+            <div id="modeLabel">
+                <select name="mode" id="mode"></select>
+            </div>
+            <div id="totalLabel">
+                <input id="total" type="number" min="5" step="1">
+            </div>
+            <div id="numLabel">
+                <input id="num" type="number" min="1" max="5" step="1">
+            </div>
+            <div id="intervalLabel">
+                <input id="interval" type="number" min="0.1" step="0.1">
+            </div>
+        </div>
+        <div id="remainLabel" class="rows"><span id="timeLeft"></span></div>
     </div>
     <img src="./images/Minion-Evil-icon.png" class="r2l" id="evil1">
     <img src="./images/Minion-Evil-2-icon.png" class="l2r" id="evil2">

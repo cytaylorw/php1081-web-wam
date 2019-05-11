@@ -33,7 +33,7 @@ html, body{
     margin: auto;
     padding-top: 20px;
 }
-.labels{
+.rows{
     padding: 10px;
 }
 td{
@@ -50,7 +50,7 @@ td{
     background-position: 0px 0px;
     cursor: url("./images/gun-1.png"), auto;
     border: none;
-    animation: escape 1.5s linear infinite;
+    animation: escape linear infinite;
 }
 @keyframes escape{
     0%{
@@ -73,9 +73,14 @@ td{
     background-color: rgba(0, 0, 255,0.8);
     border: none;
 }
-input{
+input, select{
     background-color: transparent;
 }
+
+option {
+    color: black;
+}
+
 .r2l {
     position: fixed;
     left: calc(100vw + 0px);
@@ -158,4 +163,25 @@ input{
 
 .noResult #superman {
     display: none;
+}
+
+input:disabled {
+    cursor: not-allowed;
+}
+
+#start:disabled {
+    opacity: 0;
+}
+
+input[type='number']{
+    width: 90px;
+}
+
+.inputRow {
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.inputRow *:not(:first-child){
+    margin-left: 10px;
 }
