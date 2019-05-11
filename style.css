@@ -1,0 +1,161 @@
+
+:root{
+    --run-time: 4s;
+}
+*{
+    font-family: Arial, Helvetica, sans-serif, "微軟正黑體";
+    font-size: 18px;
+    color: white;
+    text-shadow: 0px 0px 1px 1px black;
+}
+
+html, body{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    background-size: cover;
+}
+
+.noResult{
+    background-image: url("./images/minion-2874955_1920.jpg");
+}
+
+.result{
+    background-image: url("./images/blur-bright-close-up-1606655.jpg");
+}
+
+.wrap{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: auto;
+    padding-top: 20px;
+}
+.labels{
+    padding: 10px;
+}
+td{
+    border: 1px solid white;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 20px;
+}
+.red{
+    background-color: rgba(255, 0, 0,0.8);
+    background-image: url("./images/Minion-Evil-4-icon.png");
+    background-repeat: no-repeat;
+    background-position: 0px 0px;
+    cursor: url("./images/gun-1.png"), auto;
+    border: none;
+    animation: escape 1.5s linear infinite;
+}
+@keyframes escape{
+    0%{
+        background-position: 0px 0px;
+    }
+    100%{
+        background-position: 96px 0px;
+    }
+}
+
+.red:link, .red:visited, .red:hover{
+    cursor: url("./images/gun-1.png"), auto;
+}
+
+.red:active{
+    cursor: url("./images/gun-2.png"), auto;
+}
+.blue{
+    background-image: url("./images/Minion-Dancing-icon.png");
+    background-color: rgba(0, 0, 255,0.8);
+    border: none;
+}
+input{
+    background-color: transparent;
+}
+.r2l {
+    position: fixed;
+    left: calc(100vw + 0px);
+    z-index: -1;
+}
+
+#evil1{
+    top: 100px;
+    animation: r2l var(--run-time) linear infinite;
+}
+
+#evil3{
+    top: 250px;
+    animation: r2l var(--run-time) calc(var(--run-time) / 2) linear infinite;
+}
+
+@keyframes r2l{
+    0%{
+        left: calc(100vw + 0px);
+    }
+    50%{
+        left: calc(0vw - 96px);
+    }
+    100%{
+        left: calc(0vw - 96px);
+    }
+}
+
+.l2r {
+    position: fixed;
+    left: calc(0vw - 96px);
+    z-index: -1;
+}
+
+#evil2{
+    top: 100px;
+    animation: l2r var(--run-time) linear infinite;
+}
+
+#evil4{
+    top: 250px;
+    animation: l2r var(--run-time) calc(var(--run-time) / 2) linear infinite;
+}
+
+@keyframes l2r{
+    0%{
+        left: calc(0vw - 96px);
+    }
+    50%{
+        left: calc(100vw + 0px);
+    }
+    100%{
+        left: calc(100vw + 0px);
+    }
+}
+
+.result .r2l, .result .l2r{
+    display: none;
+}
+
+#superman {
+    position: fixed;
+    left: calc(100vw / 3);
+    z-index: 1;
+    top: 100vh;
+    animation: b2t var(--run-time) linear infinite;
+}
+
+@keyframes b2t{
+    0%{
+        top: 100vh;
+    }
+    66%{
+        top: calc(0vh - 96px);
+    }
+    100%{
+        top: calc(0vh - 96px);
+    }
+}
+
+.noResult #superman {
+    display: none;
+}
