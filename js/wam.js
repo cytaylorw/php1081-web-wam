@@ -8,6 +8,7 @@
     let langSelect = document.getElementById("lang");
     if(getL == undefined || !langs.includes(getL)){
         lang=getLang();
+        langSelect.value="browser"
     }else{
         lang=getL;
         langSelect.value=getL;
