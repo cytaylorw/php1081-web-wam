@@ -102,7 +102,7 @@ option {
 }
 
 #evil1{
-    top: 100px;
+    top: 150px;
     animation: r2l var(--run-time) linear infinite;
 }
 
@@ -130,7 +130,7 @@ option {
 }
 
 #evil2{
-    top: 100px;
+    top: 150px;
     animation: l2r var(--run-time) linear infinite;
 }
 
@@ -220,4 +220,8 @@ input[type='number']{
 
 .inputRow *:not(:first-child){
     margin-left: 10px;
+}
+
+.lang {
+    float: right;
 }

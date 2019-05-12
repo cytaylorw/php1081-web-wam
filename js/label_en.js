@@ -11,5 +11,7 @@ var label = {
     num : "Number: ",
     interval : "Interval(second): ",
     remain_time : "Countdown(second): ",
-    result : `Time's up! You score {1} out of {0} total scores.`
+    result : `Time's up! You score {1} out of {0} total scores.`,
+    lang : "Language: ",
+    lang_default : "default"
 };

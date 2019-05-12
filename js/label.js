@@ -11,5 +11,7 @@ var label = {
     num : "數量：",
     interval : "間隔時間(秒)：",
     remain_time : "剩餘時間(秒)：",
-    result : `時間到，總分{0}，你獲得了{1}分`
+    result : `時間到，總分{0}，你獲得了{1}分`,
+    lang : "語言：",
+    lang_default : "預設"
 };

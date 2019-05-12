@@ -1,6 +1,26 @@
 
-    let lang=getLang();
-    let file = (lang.includes("zh"))?"./js/label.js":"./js/label_en.js";
+    let lang;
+    let langs=["en","zh"];
+    let getL;
+    if(window.location.href.includes("lang=")){
+        getL = window.location.href.split("lang=")[1].split("&")[0].split("-")[0];
+    }
+    let langSelect = document.getElementById("lang");
+    if(getL == undefined || !langs.includes(getL)){
+        lang=getLang();
+    }else{
+        lang=getL;
+        langSelect.value=getL;
+    }
+
+    let file;
+    if(lang.includes("zh")){
+        file="./js/label.js";
+        document.getElementsByTagName('html')[0].setAttribute('lang', 'zh');
+    }else{
+        file="./js/label_en.js";
+        document.getElementsByTagName('html')[0].setAttribute('lang', 'en');
+    }
 
     loadScript(file, game);
 
@@ -26,7 +46,13 @@
         let remainLbel = document.getElementById("remainLabel");
         remainLbel.insertAdjacentText("afterbegin",label.remain_time);
         let timeLeft = document.getElementById("timeLeft");
-        
+        document.getElementById("langLabel").insertAdjacentText("afterbegin",label.lang);
+        langSelect.options[0].text = label.lang_default;
+
+        langSelect.onchange = function(){
+            window.location.assign(
+                window.location.href.split("?")[0]+((this.value=="")?"":"?lang="+this.value));
+        };
 
         let modeSelect = document.getElementById("mode");
         let inputs =  [

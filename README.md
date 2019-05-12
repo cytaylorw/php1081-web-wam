@@ -9,4 +9,4 @@
 ## 內容描述
 - 主題「拯救小小兵」。
 - 遊戲設定可從input自行調整。
-- 有中(zh)英(en)文版，基於navigator.language(s)。
+- 有中(zh)英(en)文版，預設基於navigator.language(s)。
