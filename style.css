@@ -16,6 +16,10 @@ html, body{
     background-size: cover;
 }
 
+#sound{
+    height: 26px;
+}
+
 .noResult{
     background-image: url("./images/minion-2874955_1920.jpg");
 }

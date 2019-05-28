@@ -86,6 +86,7 @@
         })
 
         timeLeft.innerText = inputs[0].value;
+        playSound("blah");
         
         let score = 0;
         let scoreText = document.getElementById("score");
@@ -95,6 +96,7 @@
         let time;
 
         start.onclick = function(){
+            playSound("what");
             start.disabled=true;
             modeSelect.disabled=true;
             disableInputs(true);
@@ -116,6 +118,7 @@
         for(let i=0;i<tds.length;i++){
                 tds[i].onclick = function(){
                     if(this.classList.contains("red")){
+                        playShoot();
                         this.classList.remove("red");
                         this.classList.add("blue");
                         score++;
@@ -159,10 +162,12 @@
                         tds[i].classList.add("bee");
                         superman.classList.remove("b2t");
                         superman.classList.add("t2b");
+                        playSound("beedo");
                     }else{
                         tds[i].classList.add("yeah");
                         superman.classList.remove("t2b");
                         superman.classList.add("b2t");
+                        playSound("woo");
                     }
                 }
                 
@@ -227,6 +232,32 @@
         script.onload = callback;
 
         head.appendChild(script);
+    }
+
+    function playSound(key){
+        let sounds = {
+            blah:"minion_blah.mp3",
+            what:"minion_whaaaat.mp3",
+            woo:"woohaha.mp3",
+            beedo:"beedo_beedo.mp3"
+        };
+        let sound = document.getElementById("sound");
+        sound.src="./sounds/"+sounds[key];
+        let promise = sound.play();
+
+        if (promise !== undefined) {
+            promise.then(_ => {
+              // Autoplay started!
+            }).catch(error => {
+              
+            });
+          }
+    }
+
+    function playShoot(){
+        let sound = document.getElementById("shoot");
+        sound.src="./sounds/Gun+Silencer.mp3"
+        sound.play();
     }
 
     String.prototype.format = function() {
